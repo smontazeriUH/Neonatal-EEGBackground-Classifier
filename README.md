@@ -2,13 +2,13 @@
 This repository contains a set of Matlab codes for classifying and visualising the neonatal EEG background activity.
 
 ## EEG files
-Example EEG recordings (in EDF format) from 4 neonates.  Please extract ZIP files with the same name and in the same directory.
+Example EEG recordings (in EDF format) from 4 neonates.   Please extract ZIP files with the same name and in the same directory.
 
 ## Prerequisites
 MATLAB 2019a
 
 ## References
-  ** De Wel, O., Lavanga, M., Dorado, A.C., Jansen, K., Dereymaeker, A., Naulaers, G., et al. (2017). Complexity analysis of neonatal EEG using multiscale entropy: applications in brain maturation and sleep stage classification. Entropy 19(10), 516. doi: 10.3390/e19100516.  
+  **De Wel, O., Lavanga, M., Dorado, A.C., Jansen, K., Dereymaeker, A., Naulaers, G., et al. (2017). Complexity analysis of neonatal EEG using multiscale entropy: applications in brain maturation and sleep stage classification. Entropy 19(10), 516. doi: 10.3390/e19100516.  
   Dereymaeker, A., Koolen, N., Jansen, K., Vervisch, J., Ortibus, E., De Vos, M., et al. (2016). The suppression curve as a quantitative approach for measuring brain maturation in preterm infants. Clin Neurophysiol 127(8), 2760-2765. doi: 10.1016/j.clinph.2016.05.362.  
   Greene, B.R., Faul, S., Marnane, W.P., Lightbody, G., Korotchikova, I., and Boylan, G.B. (2008). A comparison of quantitative EEG features for neonatal seizure detection. Clin Neurophysiol 119(6), 1248-1261. doi: 10.1016/j.clinph.2008.02.001.  
   Higuchi, T. (1988). Approach to an irregular time series on the basis of the fractal theory. Physica D 31(2), 277-283. doi: 10.1016/0167-2789(88)90081-4.  
