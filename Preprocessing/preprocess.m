@@ -20,7 +20,7 @@
 % Saeed Montazeri M., University of Helsinki
 % Started: 10-11-2019
 %-------------------------------------------------------------------------------
-function [eeg_data,ArtifactPercPerCh,channelList] = preproces(dat,fs,scle,offs,labels,fs_new,ElectricFreq)
+function [eeg_data,ArtifactPercPerCh,channelList] = preprocess(dat,fs,scle,offs,labels,fs_new,ElectricFreq)
 
 % Notch filter
 [bn, an] = FilterNotch(fs,ElectricFreq);

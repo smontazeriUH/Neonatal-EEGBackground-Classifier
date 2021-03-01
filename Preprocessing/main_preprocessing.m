@@ -11,7 +11,6 @@
 % Saeed Montazeri M., University of Helsinki
 % Started: 10-11-2019
 %-------------------------------------------------------------------------------
-%% Toronto data preProcessing
 clc; clearvars; close all;
 
 %% Initialization 
@@ -26,8 +25,12 @@ fs_new = 64;
 ElectricFreq = 50; % default: 50Hz
 
 % get EDF filenames
-[directorynames] = getsortedfiles(path_patients);
-
+try
+    [directorynames] = getsortedfiles(path_patients);
+catch ME
+    warning('path_patients is not valid (should be a valid address, organized as the provided example data)')
+    rethrow(ME)
+end
 
 %% Main loop of preprocessing
 tic

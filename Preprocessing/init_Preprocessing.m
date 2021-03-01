@@ -49,7 +49,7 @@ for j= 1:size(exam_names,2)
     if ~isempty(dat) && ~isempty(labels) && ~isempty(fs) && ~isempty(scle) && ~isempty(offs) && ~isempty(start)
         fs = fs(1); %sampling frequency
         % preprocessing function
-        [eeg_data, ArtifactPercPerCh, channelList] = preproces(dat,fs,scle,offs,labels,fs_new,ElectricFreq);
+        [eeg_data, ArtifactPercPerCh, channelList] = preprocess(dat,fs,scle,offs,labels,fs_new,ElectricFreq);
         preprocessedData(j,:) = {[eeg_data],[ArtifactPercPerCh],[fs_new],[start j],[channelList]};
     else
         warning(['Error in file' exam_names{1,j}])
