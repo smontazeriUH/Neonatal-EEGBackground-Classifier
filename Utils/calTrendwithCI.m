@@ -24,11 +24,11 @@ function [WeightedAvg, lowerLim, upperLim] = calTrendwithCI(probabilitySignal)
 
 nClasses = size(probabilitySignal,2); % number of classes
 % Compute BT as a weighted average of classes
-WeightedAvg = sum([0.5 2:nClasses-1 nClasses+0.5].*probabilitySignal,2);
+WeightedAvg = sum([1:nClasses].*probabilitySignal,2);
 
-lowerLim = []; upperLim = [];
 classes = [1 2:nClasses-1 nClasses];
 for inx = 1:length(probabilitySignal)
+    
     % Interpolate probability of the estimated class
     interpProb = interp1(classes',probabilitySignal(inx,:)',WeightedAvg(inx),'PCHIP');
     
@@ -36,7 +36,7 @@ for inx = 1:length(probabilitySignal)
     % Updating probability value for modal class with the distance between 
     % interpolated probability of the weighted average class and 
     % probability of the modal class
-    probabilitySignal(inx,modalC) = probabilitySignal(inx,modalC) - interpProb;
+    probabilitySignal(inx,modalC) = (probabilitySignal(inx,modalC) - interpProb);
     % Upper and lower boundaries as sum of weighted probabilites 
     if modalC == nClasses
         pLowers(inx) = sum(classes(1:end-1) .* probabilitySignal(inx,1:nClasses-1));
@@ -53,10 +53,17 @@ for inx = 1:length(probabilitySignal)
             pUppers(inx) = sum(classes(1:end-modalC).*probabilitySignal(inx,modalC+1:nClasses));
         end
     end
-    lowerLim(inx) = WeightedAvg(inx) - abs(pLowers(inx));
-    upperLim(inx) = WeightedAvg(inx) + abs(pUppers(inx));
 end
 
-% Thresholding 
+WeightedAvg = mapminmax([WeightedAvg' 1 nClasses], 0.5, nClasses+0.5)';
+WeightedAvg = WeightedAvg(1:end-2);
+
+lowerLim = WeightedAvg - abs(pLowers);
+upperLim = WeightedAvg + abs(pUppers);
+
+% Thresholding
 lowerLim(lowerLim < 0.5) = 0.5;
 upperLim(upperLim > nClasses+0.5) = nClasses+0.5;
+lowerLim = movmean(lowerLim, 7);
+upperLim = movmean(upperLim, 7);
+WeightedAvg = movmean(WeightedAvg, 7);
