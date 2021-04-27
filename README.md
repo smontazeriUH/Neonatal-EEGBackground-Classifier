@@ -1,9 +1,12 @@
 # NeonatalEEG-BTvisualisation
 This repository contains a set of Matlab codes for classifying and visualising the neonatal EEG background activity.
+&nbsp;&nbsp;&nbsp;Run main.m to get a visualisation of background trend for the input EDF file/files.
+&nbsp;&nbsp;&nbsp;Run main_preprocessing.m to get a MAT file containing preprocessed resamples EEG signal.
+&nbsp;&nbsp;&nbsp;Run main_featureExtraction.m to get an excel file containing 98 features calculated from preprocessed EEG data.
 
 ## EEG files
 Example EEG recordings (in EDF format) from 4 neonates.  
-Please extract ZIP files with the same name and in the same directory.
+Please extract ZIP files under the same name and the same directory.
 
 ## Prerequisites
 MATLAB 2019a
