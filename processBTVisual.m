@@ -40,7 +40,7 @@ classes = {'6' '5' '4' '3' '0,1,2'};
 try
     load('featurelist_98.mat','featurelist');
     
-    load('classifier_all.mat')
+    load('trained_new_cls.mat')
 catch ME
     rethrow(ME)
 end
