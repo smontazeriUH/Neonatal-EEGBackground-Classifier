@@ -24,33 +24,33 @@ function [WeightedAvg, lowerLim, upperLim] = calTrendwithCI(probabilitySignal)
 
 nClasses = size(probabilitySignal,2); % number of classes
 % Compute BT as a weighted average of classes
-WeightedAvg = sum([1:nClasses].*probabilitySignal,2);
+WeightedAvg = sum([0:nClasses/4:nClasses].*probabilitySignal,2);
 
-classes = [1 2:nClasses-1 nClasses];
+classes = [1:nClasses];
 for inx = 1:length(probabilitySignal)
     
     % Interpolate probability of the estimated class
-    interpProb = interp1(classes',probabilitySignal(inx,:)',WeightedAvg(inx),'PCHIP');
+    interpProb = interp1(classes',probabilitySignal(inx,:)',sum(classes.*probabilitySignal(inx,:)),'PCHIP');
     
-    modalC = round(WeightedAvg(inx)); % the modal class
+    modalC = round(sum(classes.*probabilitySignal(inx,:))); % the modal class
     % Updating probability value for modal class with the distance between 
     % interpolated probability of the weighted average class and 
     % probability of the modal class
     probabilitySignal(inx,modalC) = (probabilitySignal(inx,modalC) - interpProb);
     % Upper and lower boundaries as sum of weighted probabilites 
     if modalC == nClasses
-        pLowers(inx) = sum(classes(1:end-1) .* probabilitySignal(inx,1:nClasses-1));
+        pLowers(inx) = sum(flip(classes(1:end-1)) .* probabilitySignal(inx,1:nClasses-1))/sum(probabilitySignal(inx,:));
         pUppers(inx) = classes(1).*probabilitySignal(inx,nClasses);
     elseif modalC == 1
         pLowers(inx) = classes(1).*probabilitySignal(inx,1);
-        pUppers(inx) = sum(classes(1:end-1).*probabilitySignal(inx,2:nClasses));
+        pUppers(inx) = sum(classes(1:end-1).*probabilitySignal(inx,2:nClasses))/sum(probabilitySignal(inx,:));
     else
         if modalC >= WeightedAvg(inx)
-            pLowers(inx) = sum(classes(1:modalC-1).*probabilitySignal(inx,1:modalC-1));
-            pUppers(inx) = sum(classes(1:end-modalC+1).*probabilitySignal(inx,modalC:nClasses));
+            pLowers(inx) = sum(flip(classes(1:modalC-1)).*probabilitySignal(inx,1:modalC-1))/sum(probabilitySignal(inx,:));
+            pUppers(inx) = sum(classes(1:end-modalC+1).*probabilitySignal(inx,modalC:nClasses))/sum(probabilitySignal(inx,:));
         else
-            pLowers(inx) = sum(classes(1:modalC).*probabilitySignal(inx,1:modalC));
-            pUppers(inx) = sum(classes(1:end-modalC).*probabilitySignal(inx,modalC+1:nClasses));
+            pLowers(inx) = sum(flip(classes(1:modalC)).*probabilitySignal(inx,1:modalC))/sum(probabilitySignal(inx,:));
+            pUppers(inx) = sum(classes(1:end-modalC).*probabilitySignal(inx,modalC+1:nClasses))/sum(probabilitySignal(inx,:));
         end
     end
 end
@@ -64,6 +64,6 @@ upperLim = WeightedAvg + abs(pUppers);
 % Thresholding
 lowerLim(lowerLim < 0.5) = 0.5;
 upperLim(upperLim > nClasses+0.5) = nClasses+0.5;
-lowerLim = movmean(lowerLim, 7);
-upperLim = movmean(upperLim, 7);
-WeightedAvg = movmean(WeightedAvg, 7);
+lowerLim = movmean(lowerLim, 3);
+upperLim = movmean(upperLim, 3);
+WeightedAvg = movmean(WeightedAvg, 3);
