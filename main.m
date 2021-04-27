@@ -20,10 +20,3 @@ pathToPatient = 'data/b3/';
 tic
 processBTVisual(pathToPatient)
 toc
-
-pathToPatient = 'data/b4/';
-
-%% Process
-tic
-processBTVisual(pathToPatient)
-toc
