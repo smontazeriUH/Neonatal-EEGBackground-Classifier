@@ -22,7 +22,7 @@ path_save = '../preprocessed/';
 % Resampling with new frequency
 fs_new = 64;
 % Electricity frequency
-ElectricFreq = 50; % default: 50Hz
+ElectricFreq = 60; % default: 50Hz
 
 % get EDF filenames
 try
@@ -38,7 +38,7 @@ for patient = 1:size(directorynames,2)
     understudySubject = directorynames{1,patient};
     disp(['Preprocessing for ' understudySubject])
     patient_folder = [path_patients understudySubject '/'];
-    [data] = startPreprocessing(patient_folder,fs_new,ElectricFreq); %Get artifact detection data for each patient
+    [data] = init_Preprocessing(patient_folder,fs_new,ElectricFreq); %Get artifact detection data for each patient
     address = [path_save understudySubject];
     mkdir(address);
     save([address,'/',understudySubject,'.mat'],'data','-v7.3');

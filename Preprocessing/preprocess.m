@@ -24,8 +24,8 @@ function [eeg_data,ArtifactPercPerCh,channelList] = preprocess(dat,fs,scle,offs,
 
 % Notch filter
 [bn, an] = FilterNotch(fs,ElectricFreq);
-% HighPass filter
-[bh, ah] = FilterHighPass(fs);
+% BandPass filter
+[bb, ab] = FilterBandPass(fs);
 
 % indicate usefull EEG channels and remove mastoid 
 last_channel = find(strncmp('EEG P4',labels,6));
@@ -74,7 +74,7 @@ for i = 1:length(channels)
         % filtering
         filtered_data = filtfilt(bn,an,artifactfree);
         clear artifactfree
-        filtered_data = filtfilt(bh,ah,filtered_data);
+        filtered_data = filtfilt(bb,ab,filtered_data);
         
         % swap back in the NaNs:
         if(~isempty(inans))
@@ -187,12 +187,18 @@ RippleF = 80;
 [b,a]=cheby2(order,RippleF,[nf_f_low nf_f_high]/(fsamp/2),'stop');
 end
 
-function [b, a] = FilterHighPass(fsamp)
-
-hp_f_high = 0.2;% cut off frequency
-order = 2; %order filter, high pass
-[b,a]=butter(order,(hp_f_high/(fsamp/2)),'high');
-
+function [b, a] = FilterBandPass(fsamp)
+% bandpass (0.5-35Hz)
+% high-pass frequency
+bp_f_low = 0.5;
+% low-pass frequency
+bp_f_high = 35;
+% order
+order = 5; 
+% ripple factor
+RippleF = 80;
+% Chebyshev II filter used
+[b,a]=cheby2(order,RippleF,[bp_f_low bp_f_high]/(fsamp/2),'bandpass');
 end
 
 function [X,nans]=naninterp(X,method)
