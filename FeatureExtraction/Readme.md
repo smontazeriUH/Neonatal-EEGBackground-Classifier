@@ -1,10 +1,10 @@
-List of features
+# List of features
 
 
 Notes: Type indicates the domain of which feature is computed such as amplitude (A), information (I) and
 frequency (F).
 
-# Type Feature description
+\# Type description
 
 1 A Standard deviation of the amplitude modulation (μV) (Stevenson et al., 2013)
 
