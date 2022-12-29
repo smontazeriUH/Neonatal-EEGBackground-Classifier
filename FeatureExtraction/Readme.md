@@ -6,7 +6,7 @@ frequency (F).
 
 | \# | Type | description | 
 | --- | --- | --- |
-1 A Standard deviation of the amplitude modulation (μV) (Stevenson et al., 2013)
+|1 |A |Standard deviation of the amplitude modulation (μV) (Stevenson et al., 2013)|
 
 2 I Intercept of linear fit to asymmetry vs burst duration (Iyer et al., 2014)
 
