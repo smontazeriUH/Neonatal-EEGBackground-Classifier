@@ -11,25 +11,15 @@ frequency (F).
 | \# | Type | description | Ref |
 | --- | --- | --- | --- |
 |1 |A |Standard deviation of the amplitude modulation (μV) |Stevenson et al., 2013 |
-
 |2 |I |Intercept of linear fit to asymmetry vs burst duration |Iyer et al., 2014 |
-
 |3 |I |Multiscale Entropy (the average slope of the curve) |De Wel et al., 2017 |
-
 |4 |I |Multiscale Entropy (delta, 5 scales) |De Wel et al.,2017 |
-
 |5 |I |Detrended fluctuation analysis identifies the monofractal structures of the signal epoch |Peng et al.,1994; Kantelhardt et al., 2001 |
-
 |6 |I |Maximum value of the q-order singularity dimension curve. |Ihlen, 2012 |
-
 |7 |A |Mean of the amplitude modulation (μV) |Stevenson et al., 2013 |
-
 |8 |F |Power in frequency sub-band (10 - 12 Hz) |(emko et al., 2011 |
-
 |9 |I |Non-linear energy |Temko et al., 2011 | 
-
 |10 |I |Hjorth 2nd derivatives |Temko et al., 2011 | 
-
 |11 |A |Number of bursts |Palmu et al., 2010 | 
 |12 |I |4th order autoregressive modelling error |Temko et al., 2011 |
 |13 |I |2nd order autoregressive modelling error |Temko et al., 2011 |
