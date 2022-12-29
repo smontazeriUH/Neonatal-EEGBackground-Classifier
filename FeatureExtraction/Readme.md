@@ -1,6 +1,6 @@
 # List of features
 
-If you use any of these scripts or codes, please cite the following paper as well:
+For more information, please refer to the following paper. Also, if you use any of these scripts or codes, please cite this paper.
 
 Moghadam SM, Pinchefsky E, Tse I, et al. Building an open source classifier for the neonatal EEG background: a systematic featurebased approach from expert scoring to clinical visualization. Front Hum Neurosci 2021; 15: 675154.
 
