@@ -14,6 +14,10 @@ Please extract ZIP files under the same name and the same directory.
 ## Prerequisites
 MATLAB 2019a
 
+*   Wavelet Toolbox
+
+*   System Identification Toolbox
+
 ## References
   &nbsp;&nbsp;&nbsp;De Wel, O., Lavanga, M., Dorado, A.C., Jansen, K., Dereymaeker, A., Naulaers, G., et al. (2017). Complexity analysis of neonatal EEG using multiscale entropy: applications in brain maturation and sleep stage classification. Entropy 19(10), 516. doi: 10.3390/e19100516.  
   &nbsp;&nbsp;&nbsp;Dereymaeker, A., Koolen, N., Jansen, K., Vervisch, J., Ortibus, E., De Vos, M., et al. (2016). The suppression curve as a quantitative approach for measuring brain maturation in preterm infants. Clin Neurophysiol 127(8), 2760-2765. doi: 10.1016/j.clinph.2016.05.362.  
